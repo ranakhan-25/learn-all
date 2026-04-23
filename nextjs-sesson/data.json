@@ -1,0 +1,156 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "name": "Wireless Headphones",
+      "price": 59.99,
+      "category": "Electronics",
+      "image": "/products/headphones.jpg",
+      "description": "High-quality wireless headphones with noise cancellation."
+    },
+    {
+      "id": 2,
+      "name": "Smart Watch",
+      "price": 99.99,
+      "category": "Electronics",
+      "image": "/products/smartwatch.jpg",
+      "description": "Track your fitness and notifications with this sleek smartwatch."
+    },
+    {
+      "id": 3,
+      "name": "Running Shoes",
+      "price": 79.99,
+      "category": "Fashion",
+      "image": "/products/shoes.jpg",
+      "description": "Comfortable and durable running shoes for everyday use."
+    },
+    {
+      "id": 4,
+      "name": "Backpack",
+      "price": 39.99,
+      "category": "Accessories",
+      "image": "/products/backpack.jpg",
+      "description": "Spacious backpack perfect for travel and daily use."
+    },
+    {
+      "id": 5,
+      "name": "Bluetooth Speaker",
+      "price": 49.99,
+      "category": "Electronics",
+      "image": "/products/speaker.jpg",
+      "description": "Portable speaker with deep bass and long battery life."
+    },
+    {
+      "id": 6,
+      "name": "Sunglasses",
+      "price": 19.99,
+      "category": "Fashion",
+      "image": "/products/sunglasses.jpg",
+      "description": "Stylish sunglasses with UV protection."
+    },
+    {
+      "id": 7,
+      "name": "Laptop Stand",
+      "price": 29.99,
+      "category": "Office",
+      "image": "/products/laptop-stand.jpg",
+      "description": "Ergonomic aluminum laptop stand for better posture."
+    },
+    {
+      "id": 8,
+      "name": "Gaming Mouse",
+      "price": 45.99,
+      "category": "Electronics",
+      "image": "/products/mouse.jpg",
+      "description": "High precision gaming mouse with customizable buttons."
+    },
+    {
+      "id": 9,
+      "name": "Water Bottle",
+      "price": 14.99,
+      "category": "Lifestyle",
+      "image": "/products/bottle.jpg",
+      "description": "Reusable stainless steel water bottle."
+    },
+    {
+      "id": 10,
+      "name": "Desk Lamp",
+      "price": 24.99,
+      "category": "Home",
+      "image": "/products/lamp.jpg",
+      "description": "LED desk lamp with adjustable brightness."
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "role": "admin",
+      "image": "/users/user1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "role": "user",
+      "image": "/users/user2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Michael Brown",
+      "email": "michael@example.com",
+      "role": "editor",
+      "image": "/users/user3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Emily Johnson",
+      "email": "emily@example.com",
+      "role": "user",
+      "image": "/users/user4.jpg"
+    },
+    {
+      "id": 5,
+      "name": "David Wilson",
+      "email": "david@example.com",
+      "role": "user",
+      "image": "/users/user5.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Sophia Martinez",
+      "email": "sophia@example.com",
+      "role": "admin",
+      "image": "/users/user6.jpg"
+    },
+    {
+      "id": 7,
+      "name": "James Anderson",
+      "email": "james@example.com",
+      "role": "editor",
+      "image": "/users/user7.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Olivia Thomas",
+      "email": "olivia@example.com",
+      "role": "user",
+      "image": "/users/user8.jpg"
+    },
+    {
+      "id": 9,
+      "name": "William Taylor",
+      "email": "william@example.com",
+      "role": "user",
+      "image": "/users/user9.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Ava Lee",
+      "email": "ava@example.com",
+      "role": "editor",
+      "image": "/users/user10.jpg"
+    }
+  ]
+}
