@@ -24,15 +24,15 @@ export default function RootLayout({ children }) {
     <html
       suppressHydrationWarning
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased light`}
-      data-theme="light"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased `}
+      // data-theme="light"
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col">
-        <Providers>
+        {/* <Providers> */}
           <Navbar />
           {children}
           <Footer />
-        </Providers>
+        {/* </Providers> */}
       </body>
     </html>
   );
