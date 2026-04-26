@@ -5,6 +5,8 @@ import React from 'react'
 
 const ProfilePage = () => {
 
+  
+
   const { data, isPending } = useSession()
   if (isPending) {
     return <p className='text-2xl font-medium text-red-500 text-center my-10'>Loading...</p>

@@ -1,11 +1,22 @@
 "use client";
 
+import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
+  const { data, isPending } = useSession();
+  if (isPending) {
+    return (
+      <p className="text-2xl font-medium text-red-500 text-center my-10">
+        Loading...
+      </p>
+    );
+  }
+  const user = data?.user;
+
   return (
     <nav className="w-full border-b bg-white sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -33,30 +44,27 @@ const Navbar = () => {
           </Link>
         </div>
 
-        
-
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-4">
+          {user ? (
+            <button onClick={()=>signOut()} className="px-4 py-2 hover:text-blue-700 transition" >Loge Out</button>
+          ) : (
+            <div>
+              <Link
+                href="/api/auth/signin"
+                className="px-4 py-2 hover:text-blue-700 transition"
+              >
+                Sign in
+              </Link>
+            </div>
+          )}
 
-
-          <Link
-            href="/api/auth/signin"
-            className="px-4 py-2 hover:text-blue-700 transition"
-          >
-            Sign in
-          </Link>
-          
           <Link
             href="/api/auth/signup"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
             Sign Up
           </Link>
-
-         
-
-          
-
         </div>
 
         {/* Mobile Menu Button */}
@@ -66,8 +74,6 @@ const Navbar = () => {
         >
           ☰
         </button>
-
-
       </div>
 
       {/* Mobile Dropdown */}
@@ -92,20 +98,27 @@ const Navbar = () => {
           </div>
 
           <div className="flex flex-col space-y-3 pt-2">
-            <Link
+
+            {user ? (
+            <button onClick={()=>signOut()} className="w-full px-4 py-2 rounded-lg bg-gray-50 hover:bg-gray-100 text-center text-black" >Loge Out</button>
+          ) : (
+            <div>
+              <Link
               href="/api/auth/signin"
               className="w-full px-4 py-2 rounded-lg bg-gray-50 hover:bg-gray-100 text-center text-black"
             >
               Sign In
             </Link>
+            </div>
+            )}
+            
+            
             <Link
               href="/api/auth/signup"
               className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center"
             >
               Sign Up
             </Link>
-
-            
           </div>
         </div>
       )}
