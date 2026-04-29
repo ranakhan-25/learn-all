@@ -14,32 +14,55 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    const userData = Object.fromEntries(formData.entries())
+    const userData = Object.fromEntries(formData.entries());
 
-
-    const { data, error } = await authClient.signUp.email({
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-      callbackURL: "/"
-    })
-
-    if (error) {
-      return alert(error.message)
-    } else {
-      alert("user registry successfully")
-      router.push("/")
-    }
-
+    const { data, error } = await authClient.signUp.email(
+      {
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+        callbackURL: "/profile",
+      },
+      {
+        onSuccess: () => {
+          alert("User registered successfully!");
+          router.replace("/profile");
+        },
+        onError: (error) => {
+          alert(error.message);
+        },
+      },
+    );
   };
 
+  const handelGithubAuth = async () => {
+    const data = await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/profile",
+    });
+    if (!data) {
+      return alert("sign in with github is not successfully ");
+    }
+    alert("Sign is with github is successfully");
+  };
+  const handelGoogleAuth = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/profile",
+    });
+    if (!data) {
+      return alert("sign in with google is not successfully ");
+    }
+    alert("Sign is with google is successfully");
+  };
+
+  const handelFacebookAuth = () => {};
 
   return (
     <div className="max-w-130  p-3 bg-gray-200 text-black mx-auto my-5 rounded-xl">
@@ -122,7 +145,7 @@ const SignUpPage = () => {
           </Description>
           <FieldError />
         </TextField>
-        
+
         <div className="flex gap-2">
           <Button className="w-full" type="submit">
             <Check />
@@ -130,11 +153,15 @@ const SignUpPage = () => {
           </Button>
         </div>
       </Form>
+
       <div>
         <hr className="my-5" />
         <div className="flex flex-col gap-3">
           {/* GitHub */}
-          <button className="btn bg-black w-full text-white border-black">
+          <button
+            onClick={handelGithubAuth}
+            className="btn bg-black w-full text-white border-black"
+          >
             <svg
               aria-label="GitHub logo"
               width="16"
@@ -151,7 +178,10 @@ const SignUpPage = () => {
           </button>
 
           {/* Google */}
-          <button className="btn bg-white w-full text-black border-[#e5e5e5]">
+          <button
+            onClick={handelGoogleAuth}
+            className="btn bg-white w-full text-black border-[#e5e5e5]"
+          >
             <svg
               aria-label="Google logo"
               width="16"
@@ -183,7 +213,10 @@ const SignUpPage = () => {
           </button>
 
           {/* Facebook */}
-          <button className="btn bg-[#1A77F2] w-full text-white border-[#005fd8]">
+          <button
+            onClick={handelFacebookAuth}
+            className="btn bg-[#1A77F2] w-full text-white border-[#005fd8]"
+          >
             <svg
               aria-label="Facebook logo"
               width="16"
@@ -199,7 +232,14 @@ const SignUpPage = () => {
             Login with Facebook
           </button>
         </div>
-        <Link href="/api/auth/signin"><p className="mt-3">I have an account <span className="text-green-500 text-sm font-bold underline cursor-pointer">SignIn</span></p></Link>
+        <Link href="/api/auth/signin">
+          <p className="mt-3">
+            I have an account{" "}
+            <span className="text-green-500 text-sm font-bold underline cursor-pointer">
+              SignIn
+            </span>
+          </p>
+        </Link>
       </div>
     </div>
   );
