@@ -1,22 +1,23 @@
-const dotenv = require("dotenv");
-dotenv.config();
-const mongoose = require("mongoose");
+import { MongoClient, ServerApiVersion } from "mongodb";
 
-const url = process.env.DB_URI;
+const uri = process.env.DB_URI;
 
-const databaseConnect = async () => {
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
+
+export async function run() {
   try {
-    if (!url) {
-      console.log("DB URL not found");
-      return;
-    }
-
-    await mongoose.connect(url);
-
-    console.log("Database Connected");
-  } catch (error) {
-    console.log(error.message);
+    await client.connect();
+    await client.db("admin").command({ ping: 1 });
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!",
+    );
+  } finally {
+    await client.close();
   }
-};
-
-module.exports = databaseConnect;
+}

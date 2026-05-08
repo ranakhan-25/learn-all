@@ -4,6 +4,10 @@ const server = http.createServer((req, res) => {
     res.writeHead(200,{"content-type":"text/plain"})
     res.end("Hello world")
   }
+  if (req.url === "/about") {
+    res.writeHead(200,{"content-type":"text/plain"})
+    res.end("Hello world this is about page")
+  }
 })
 
 server.listen(4000, () => {
