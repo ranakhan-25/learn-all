@@ -79,12 +79,12 @@ userRouter.post("/users/register", async (req, res) => {
 });
 
 // update user by id
-userRouter.put("/users/:id", async (req, res) => {
+userRouter.patch("/users/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const { name, phone, image } = req.body;
     const user = await User.findOne({ _id: id });
-     if (!user) {
+    if (!user) {
       return res.json({
         message: "user is not found with this id",
         status: 400,
@@ -95,15 +95,23 @@ userRouter.put("/users/:id", async (req, res) => {
       name,
       phone,
       image,
-    }
+    };
 
-
-    
+    const updateUser = await User.findOneAndUpdate(
+      { _id: id },
+      { $set: newUser },
+      { new: true },
+    );
+    return res.json({
+      message: "User updated successfully",
+      status: 200,
+      data: updateUser,
+    });
   } catch (error) {
     return res.json({
       message: error.message,
-      status:400
-    })
+      status: 400,
+    });
   }
 });
 
@@ -114,7 +122,7 @@ userRouter.delete("/users/:id", async (req, res) => {
 
     const user = await User.deleteOne({ _id: id });
 
-    console.log(user)
+    console.log(user);
 
     if (!user) {
       return res.json({
@@ -125,10 +133,8 @@ userRouter.delete("/users/:id", async (req, res) => {
 
     return res.json({
       message: "user ws deleted successfully",
-      data:user
-    })
-
-
+      data: user,
+    });
   } catch (error) {
     return res.json({
       message: error.message,

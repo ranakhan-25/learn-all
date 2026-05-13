@@ -20,9 +20,9 @@ const Button = ({ deleteUser, user }) => {
       <Link href={`/details/${user._id}`} className="bg-amber-200 px-4 py-1 rounded-2xl text-purple-600">
         Details
       </Link>
-      <button className="bg-pink-200 px-4 py-1 rounded-2xl text-purple-600">
+      <Link href={`/updata/${user._id}`} className="bg-pink-200 px-4 py-1 rounded-2xl text-purple-600">
         edit
-      </button>
+      </Link>
       <button onClick={()=>handelDelete(user._id)} className="bg-red-200 px-4 py-1 rounded-2xl text-purple-600">
         delete
       </button>
