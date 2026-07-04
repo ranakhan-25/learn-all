@@ -111,82 +111,84 @@
 // store.dispatch(getProduct())
 // store.dispatch(addProduct("milk"))
 
-const { createStore, applyMiddleware } = require("redux");
-const {thunk} = require("redux-thunk");
-const axios = require("axios");
-const GET_TODOS = "GET_TODOS";
-const GET_TODOS_SUCCESS = "SUCCESS_TODOS";
-const GET_TODOS_ERROR = "ERROR_TODOS";
+// const { createStore, applyMiddleware } = require("redux");
+// const {thunk} = require("redux-thunk");
+// const axios = require("axios");
+// const GET_TODOS = "GET_TODOS";
+// const GET_TODOS_SUCCESS = "SUCCESS_TODOS";
+// const GET_TODOS_ERROR = "ERROR_TODOS";
 
-const initialTodos = {
-  isLoading: false,
-  error: null,
-  todos: [],
-};
+// const initialTodos = {
+//   isLoading: false,
+//   error: null,
+//   todos: [],
+// };
 
-const getTodos = () => {
-  return {
-    type: GET_TODOS,
-  };
-};
-const getTodosSuccess = (value) => {
-  return {
-    type: GET_TODOS_SUCCESS,
-    payload: value,
-  };
-};
-const getTodosError = (error) => {
-  return {
-    type: GET_TODOS_ERROR,
-    payload: error,
-  };
-};
+// const getTodos = () => {
+//   return {
+//     type: GET_TODOS,
+//   };
+// };
+// const getTodosSuccess = (value) => {
+//   return {
+//     type: GET_TODOS_SUCCESS,
+//     payload: value,
+//   };
+// };
+// const getTodosError = (error) => {
+//   return {
+//     type: GET_TODOS_ERROR,
+//     payload: error,
+//   };
+// };
 
-const todosReducer = (state = initialTodos, action) => {
-  switch (action.type) {
-    case GET_TODOS: {
-      return {
-        ...state,
-        isLoading: true,
-      };
-    }
-    case GET_TODOS_SUCCESS: {
-      return {
-        ...state,
-        isLoading: false,
-        todos: action.payload,
-      };
-    }
-    case GET_TODOS_ERROR: {
-      return {
-        ...state,
-        error: true,
-        isLoading: false,
-        todos: action.payload,
-      };
-    }
-    default:
-      return state;
-  }
-};
+// const todosReducer = (state = initialTodos, action) => {
+//   switch (action.type) {
+//     case GET_TODOS: {
+//       return {
+//         ...state,
+//         isLoading: true,
+//       };
+//     }
+//     case GET_TODOS_SUCCESS: {
+//       return {
+//         ...state,
+//         isLoading: false,
+//         todos: action.payload,
+//       };
+//     }
+//     case GET_TODOS_ERROR: {
+//       return {
+//         ...state,
+//         error: true,
+//         isLoading: false,
+//         todos: action.payload,
+//       };
+//     }
+//     default:
+//       return state;
+//   }
+// };
 
-const fetchData = () => {
-  return (dispatch) => {
-    dispatch(getTodos());
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => {
-        const title = res.data.map(item => item.title)
-        dispatch(getTodosSuccess(title))
-      })
-      .catch((error) => dispatch(getTodosError(error.message)));
-  };
-};
+// const fetchData = () => {
+//   return (dispatch) => {
+//     dispatch(getTodos());
+//     axios
+//       .get("https://jsonplaceholder.typicode.com/todos")
+//       .then((res) => {
+//         const title = res.data.map(item => item.title)
+//         dispatch(getTodosSuccess(title))
+//       })
+//       .catch((error) => dispatch(getTodosError(error.message)));
+//   };
+// };
 
-const store = createStore(todosReducer, applyMiddleware(thunk));
+// const store = createStore(todosReducer, applyMiddleware(thunk));
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+// store.subscribe(() => {
+//   console.log(store.getState());
+// });
 
-store.dispatch(fetchData());
+// store.dispatch(fetchData());
+
+
