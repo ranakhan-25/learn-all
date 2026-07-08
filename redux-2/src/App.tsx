@@ -1,47 +1,16 @@
-import "./App.css"
-import Counter from "./components/Counter"
-
-
+import { Provider } from "react-redux";
+import "./App.css";
+import Counter from "./components/Counter";
+import store from './store'
 
 const App = () => {
-
-  const INCREMENT = "increment"
-  const DECREMENT = "decrement"
-
-  const initialCounterState = {
-    count: 1,
-  }
-
-
-  const counterReducer = (state={initialCounterState},action:any) => {
-    switch (action.type) {
-      case INCREMENT:
-        
-        return {
-          ...state,
-          count:state.count + 1,
-        }
-    
-      case DECREMENT:
-        
-        return {
-          ...state,
-          count:state.count - 1,
-        }
-    
-      default:
-        return state
-    }
-  }
-
-   
-  
-  
   return (
-    <div className="text-blue-500">
-      <Counter counterReducer={counterReducer} count={initialCounterState} />
-    </div>
-  )
-}
+    <Provider store={store}>
+      <div className="text-blue-500">
+        <Counter />
+      </div>
+    </Provider>
+  );
+};
 
-export default App
+export default App;
