@@ -68,5 +68,43 @@
 // const newNum = num.toLocaleLowerCase().split(" ").map(str=>str.charAt(0).toUpperCase() + str.slice(1)).join(" ")
 // console.log(newNum)
 // ===========================================
+// const count = "hello";
+// let result = {}
+// for (let char of count){
+//   if (result[char]) {
+//     result[char]++
+//   }
+//   else {
+//     result[char] = 1
+//   }
+// }
+// console.log(result)
+// ==================================================
+// const tr = [0, 1, false, 2, "", 3, null, undefined];
+// let n = []
+// for (let i = 0; i < tr.length; i++){
+//   if (tr[i]) {
+//     n.push(tr[i])
+//   }
+// }
+// console.log(n)
+// =================================================
 
+// function fun(n) {
+//   return n * 2
+// }
+// console.log(fun(5))
 
+// ===================================================
+
+// const pizzaSlices = ['Bread', 'Cheese', 'Veggie', 'BBQ', 'Meet'];
+// const n = pizzaSlices.slice(1,4)
+// console.log(n)
+// =============================================
+const akhonFriends = ["Abul", "Babul", "Kuddus"];
+const addHoise = ["Mokhles", "Kashem"];
+// akhonFriends.push(addHoise)
+// console.log(akhonFriends)
+
+const n = [...akhonFriends, ...addHoise]
+console.log(n)
