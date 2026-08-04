@@ -101,10 +101,10 @@
 // const n = pizzaSlices.slice(1,4)
 // console.log(n)
 // =============================================
-const akhonFriends = ["Abul", "Babul", "Kuddus"];
-const addHoise = ["Mokhles", "Kashem"];
+// const akhonFriends = ["Abul", "Babul", "Kuddus"];
+// const addHoise = ["Mokhles", "Kashem"];
 // akhonFriends.push(addHoise)
 // console.log(akhonFriends)
 
-const n = [...akhonFriends, ...addHoise]
-console.log(n)
+// const n = [...akhonFriends, ...addHoise]
+// console.log(n)
