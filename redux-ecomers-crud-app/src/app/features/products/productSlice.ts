@@ -1,35 +1,62 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-
 export interface Product {
-  albumId: number;
-  id: number;
+  id: string;
   title: string;
-  url: string;
-  thumbnailUrl: string;
+  desc: string;
+  price: number;
 }
-
+export interface UpdateProductPayload {
+  id: string;
+  data: {
+    title: string;
+    desc: string;
+    price: number;
+  };
+}
 export interface Products {
   isLoading: boolean;
-  products:Product[] ;
-  error: string | boolean | undefined | null
+  products: Product[];
+  error: string | boolean | undefined | null;
 }
 
-const initialState:Products = {
+const initialState: Products = {
   isLoading: true,
   products: [],
-  error:false,
-}
+  error: false,
+};
 
-export const getProduct = createAsyncThunk("products/product", async()=> {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/photos`)
-  return res.json()
-})
-export const getSingleProduct = createAsyncThunk("products/product", async(id)=> {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`)
-  return res.json()
-})
+export const getProduct = createAsyncThunk("products/product", async () => {
+  const res = await fetch(`http://localhost:3000/products`);
+  return res.json();
+});
+export const deleteProduct = createAsyncThunk<string, string>(
+  "products/deleteProduct",
+  async (id) => {
+    await fetch(`http://localhost:3000/products/${id}`, {
+      method: "DELETE",
+    });
+    return id;
+  },
+);
 
+export const updateProduct = createAsyncThunk<
+  Product,
+  UpdateProductPayload
+>(
+  "products/updateProduct",
+  async ({ id, data }) => {
+    const res = await fetch(`http://localhost:3000/products/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    return await res.json();
+  }
+);
 
 const productSlice = createSlice({
   name: "product",
@@ -49,7 +76,12 @@ const productSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || "Something went wrong";
       })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.products = state.products.filter(
+          (item) => item.id !== action.payload,
+        );
+      });
   },
 });
 
-export default productSlice.reducer
+export default productSlice.reducer;

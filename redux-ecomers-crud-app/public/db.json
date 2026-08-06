@@ -1,0 +1,32 @@
+{"products":[
+  {
+    "id": "1",
+    "title": "Wireless Mouse",
+    "desc": "Ergonomic wireless mouse with adjustable DPI and long battery life.",
+    "price": 24.99
+  },
+  {
+    "id": "2",
+    "title": "Mechanical Keyboard",
+    "desc": "RGB backlit mechanical keyboard with blue switches for a premium typing experience.",
+    "price": 59.99
+  },
+  {
+    "id": "3",
+    "title": "Gaming Headset",
+    "desc": "Noise-canceling gaming headset with surround sound and detachable microphone.",
+    "price": 79.99
+  },
+  {
+    "id": "4",
+    "title": "USB-C Hub",
+    "desc": "7-in-1 USB-C hub featuring HDMI, USB 3.0, SD card reader, and PD charging.",
+    "price": 34.5
+  },
+  {
+    "id": "5",
+    "title": "Portable SSD",
+    "desc": "1TB high-speed portable SSD with USB-C connectivity for fast file transfers.",
+    "price": 119.99
+  }
+]}
