@@ -1,0 +1,15 @@
+{
+  "HomePage": {
+    "title": "Welcome",
+    "description": "This is our website"
+  },
+  "navbar": {
+    "logo": "My Website",
+    "menu": {
+      "home": "Home",
+      "about": "About",
+      "service": "Service"
+    },
+    "btn": "Contact Us"
+  }
+}
