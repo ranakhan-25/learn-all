@@ -1,0 +1,19 @@
+{
+  "navbar": {
+    "logo": "My Website",
+    "menu": {
+      "home": "Home",
+      "about": "About",
+      "service": "Services",
+      "contact": "Contact"
+    },
+    "btn": "Get Started"
+  },
+  "hero": {
+    "badge": "Welcome to our website",
+    "title": "Build Something Amazing",
+    "description": "We create modern, fast, and user-friendly digital experiences that help businesses grow.",
+    "primaryButton": "Get Started",
+    "secondaryButton": "Learn More"
+  }
+}
