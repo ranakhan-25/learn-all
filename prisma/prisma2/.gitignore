@@ -1,0 +1,85 @@
+# compiled output
+/dist
+/node_modules
+/build
+/reports
+/.pnpm-store
+/pnpm-lock.yaml
+src/database/types
+src/database/types/*
+
+# Logs
+logs
+firebase-service-account.json
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+bun.lock
+*.lockb
+*.backup
+.backup
+.mimocode
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Miscellaneous
+*.pem
+.github/*
+
+# temp directory
+.temp
+.tmp
+.sh
+*.sh
+
+# uploads (exported files)
+/uploads
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+
+# ignore ci-cd file and config file
+.gitlab-ci.yml
+ecosystem.config.js 

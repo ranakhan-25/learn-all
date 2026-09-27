@@ -1,0 +1,23 @@
+{
+  "name": "prisma2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@prisma/orm-postgres": "^8.0.0-rc.12",
+    "dotenv": "^18.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "prisma": "^8.0.0-rc.17",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  }
+}
