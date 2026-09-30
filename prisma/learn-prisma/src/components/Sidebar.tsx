@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 type Tag = {
@@ -50,13 +51,12 @@ export default function Sidebar() {
       </div>
 
       {/* New Note Button */}
-      <button
-        type="button"
+      <Link href={'/add-note'}
         className="mb-5 flex h-11 items-center justify-center gap-2 border-2 border-black bg-green-400 text-sm font-black shadow-[4px_4px_0px_#000] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
       >
         <span className="text-xl leading-none">+</span>
         <span>NEW NOTE</span>
-      </button>
+      </Link>
 
       {/* Filter Title */}
       <div className="mb-2 px-1 text-[11px] font-bold uppercase tracking-wide text-gray-500">

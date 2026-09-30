@@ -1,68 +1,73 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-interface User {
+interface Note {
   id: number;
-  name: string;
-  email: string;
-  role: string;
-  status: "Active" | "Inactive";
-  avatar?: string;
+  title: string;
+  description: string;
+  author: string;
+  status: "Published" | "Draft";
+  createdAt: string;
 }
 
-// API কাজ না করলে এই data দেখাবে
-const dummyUsers: User[] = [
+const dummyNotes: Note[] = [
   {
     id: 1,
-    name: "Rana Khan",
-    email: "rana@example.com",
-    role: "Admin",
-    status: "Active",
+    title: "Project Meeting",
+    description:
+      "Discuss the new project requirements with the development team.",
+    author: "Rana Khan",
+    status: "Published",
+    createdAt: "Sep 22, 2026",
   },
   {
     id: 2,
-    name: "John Doe",
-    email: "john@example.com",
-    role: "User",
-    status: "Active",
+    title: "Next.js Learning",
+    description: "Learn Next.js App Router, Server Components and API routes.",
+    author: "John Doe",
+    status: "Published",
+    createdAt: "Sep 21, 2026",
   },
   {
     id: 3,
-    name: "Sarah Smith",
-    email: "sarah@example.com",
-    role: "Manager",
-    status: "Inactive",
+    title: "Database Design",
+    description: "Create Prisma schema and define database relationships.",
+    author: "Sarah Smith",
+    status: "Draft",
+    createdAt: "Sep 20, 2026",
   },
   {
     id: 4,
-    name: "Michael Brown",
-    email: "michael@example.com",
-    role: "User",
-    status: "Active",
+    title: "Dashboard Update",
+    description:
+      "Update the dashboard UI and add new note management features.",
+    author: "Michael Brown",
+    status: "Published",
+    createdAt: "Sep 19, 2026",
   },
 ];
 
 const DashboardPage = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchNotes = async () => {
       try {
-        const response = await fetch("/api/users");
+        const response = await fetch("/api/notes");
 
         // API response ঠিক না হলে dummy data
         if (!response.ok) {
-          setUsers(dummyUsers);
+          setNotes(dummyNotes);
           return;
         }
 
-        // JSON কিনা check
         const contentType = response.headers.get("content-type");
 
+        // JSON না হলে dummy data
         if (!contentType?.includes("application/json")) {
-          setUsers(dummyUsers);
+          setNotes(dummyNotes);
           return;
         }
 
@@ -70,35 +75,35 @@ const DashboardPage = () => {
 
         // API data থাকলে API data
         if (Array.isArray(result) && result.length > 0) {
-          setUsers(result);
+          setNotes(result);
         } else {
           // API empty হলে dummy data
-          setUsers(dummyUsers);
+          setNotes(dummyNotes);
         }
       } catch (error) {
-        console.error("User API Error:", error);
+        console.error("Note API Error:", error);
 
         // API error হলে dummy data
-        setUsers(dummyUsers);
+        setNotes(dummyNotes);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUsers();
+    fetchNotes();
   }, []);
 
   // Loading
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 p-6">
-        <h1 className="mb-6 text-2xl font-bold">Users</h1>
+        <h1 className="mb-6 text-2xl font-bold">Notes</h1>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[1, 2, 3, 4].map((item) => (
             <div
               key={item}
-              className="h-48 animate-pulse rounded-xl bg-gray-200"
+              className="h-52 animate-pulse rounded-xl bg-gray-200"
             />
           ))}
         </div>
@@ -110,65 +115,57 @@ const DashboardPage = () => {
     <div className="min-h-screen bg-gray-100 p-6">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Users</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Notes</h1>
 
-        <p className="mt-1 text-gray-500">Total Users: {users.length}</p>
+        <p className="mt-1 text-gray-500">Total Notes: {notes.length}</p>
       </div>
 
-      {/* User Cards */}
+      {/* Note Cards */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {users.map((user) => (
+        {notes.map((note) => (
           <div
-            key={user.id}
+            key={note.id}
             className="rounded-xl bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
           >
-            {/* User Avatar + Name */}
-            <div className="mb-5 flex items-center gap-4">
-              {user.avatar ? (
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  className="h-14 w-14 rounded-full object-cover"
-                />
-              ) : (
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xl font-bold text-blue-600">
-                  {user.name.charAt(0).toUpperCase()}
-                </div>
-              )}
-
-              <div className="min-w-0">
-                <h2 className="truncate text-lg font-semibold text-gray-900">
-                  {user.name}
-                </h2>
-
-                <p className="truncate text-sm text-gray-500">{user.email}</p>
-              </div>
-            </div>
-
-            {/* User Details */}
-            <div className="space-y-3 border-t pt-4">
-              {/* Role */}
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Role</span>
-
-                <span className="text-sm font-medium text-gray-900">
-                  {user.role}
-                </span>
-              </div>
+            {/* Title */}
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <h2 className="text-lg font-semibold text-gray-900">
+                {note.title}
+              </h2>
 
               {/* Status */}
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Status</span>
+              <span
+                className={`shrink-0 rounded-full px-3 py-1 text-xs font-medium ${
+                  note.status === "Published"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-yellow-100 text-yellow-700"
+                }`}
+              >
+                {note.status}
+              </span>
+            </div>
 
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-medium ${
-                    user.status === "Active"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-red-100 text-red-700"
-                  }`}
-                >
-                  {user.status}
-                </span>
+            {/* Description */}
+            <p className="mb-6 line-clamp-3 text-sm leading-6 text-gray-500">
+              {note.description}
+            </p>
+
+            {/* Note Info */}
+            <div className="border-t pt-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-gray-400">Author</p>
+
+                  <p className="text-sm font-medium text-gray-800">
+                    {note.author}
+                  </p>
+                </div>
+
+                <div className="text-right">
+                  <p className="text-xs text-gray-400">Created</p>
+
+                  <p className="text-sm text-gray-600">{note.createdAt}</p>
+                </div>
               </div>
             </div>
           </div>
