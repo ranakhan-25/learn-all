@@ -103,8 +103,9 @@
 // =============================================
 const akhonFriends = ["Abul", "Babul", "Kuddus"];
 const addHoise = ["Mokhles", "Kashem"];
-// akhonFriends.push(addHoise)
-// console.log(akhonFriends)
+akhonFriends.push(addHoise)
+console.log(akhonFriends)
 
 const n = [...akhonFriends, ...addHoise]
-console.log(n)
+// console.log(n)
+
