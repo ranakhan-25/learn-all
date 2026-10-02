@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import Navbar from "@/components/Navbar";
+import ThemeProviders from "../theme.providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,20 +24,20 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 };
 
-export default async function RootLayout({children, params}: Props) {
-  const {locale} = await params;
+export default async function RootLayout({ children, params }: Props) {
+  const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
- 
+
   // Enable static rendering
   setRequestLocale(locale);
   return (
@@ -46,10 +47,12 @@ export default async function RootLayout({children, params}: Props) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>
-          <Navbar/>
-          {children}
-        </NextIntlClientProvider>
+        <ThemeProviders>
+          <NextIntlClientProvider>
+            <Navbar />
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProviders>
       </body>
     </html>
   );

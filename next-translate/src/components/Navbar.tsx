@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { locale } from "next/root-params";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const n = useTranslations("navbar");
@@ -27,6 +28,7 @@ const Navbar = () => {
       <div className="flex items-center gap-5">
         <LanguageSwitcher />
         <button>{n("btn")}</button>
+        <ThemeToggle/>
       </div>
     </div>
   );
